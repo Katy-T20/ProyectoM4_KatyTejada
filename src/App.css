@@ -1,0 +1,613 @@
+/* ─── Fuentes ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@500;600;700&display=swap');
+
+/* ─── Variables ───────────────────────────────────────────── */
+:root {
+  --bg-base: #111827;
+  --bg-surface: #1C2333;
+  --bg-card: #243044;
+  --bg-card-active: #2D3B55;
+  --bg-input: #1A2436;
+
+  --accent: #C026D3;
+  --accent-dim: #3B0764;
+  --accent-text: #E879F9;
+
+  --blue: #3B82F6;
+  --blue-dim: #1E3A5F;
+  --blue-text: #60A5FA;
+
+  --green: #22C55E;
+  --green-dim: #14532D;
+  --green-text: #4ADE80;
+
+  --red: #EF4444;
+  --red-dim: #3B0F0F;
+  --red-text: #F87171;
+
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+
+  --border: rgba(148, 163, 184, 0.1);
+  --border-hover: rgba(148, 163, 184, 0.2);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+/* ─── Reset base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Layout principal ────────────────────────────────────── */
+.tm-app {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(192, 38, 211, 0.08), transparent),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(59, 130, 246, 0.05), transparent);
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  padding: 0 0 4rem;
+}
+
+.tm-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ─── Header ──────────────────────────────────────────────── */
+.tm-header {
+  padding: 2.5rem 0 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.tm-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tm-header-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tm-header-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.tm-header-stats {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.tm-stat-item {
+  text-align: right;
+}
+
+.tm-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.tm-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.tm-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+}
+
+/* ─── Toolbar ─────────────────────────────────────────────── */
+.tm-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.tm-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.tm-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.tm-search-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.75rem 0.6rem 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.tm-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.tm-search-input:focus {
+  border-color: var(--accent);
+}
+
+.tm-filter-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tm-filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.tm-filter-btn.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+/* ─── Formulario ──────────────────────────────────────────── */
+.tm-add-form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: tm-slide-down 0.2s ease;
+}
+
+@keyframes tm-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tm-add-form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tm-add-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.tm-add-input::placeholder {
+  color: var(--text-muted);
+}
+
+.tm-add-input:focus {
+  border-color: var(--accent);
+}
+
+.tm-add-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  outline: none;
+  cursor: pointer;
+}
+
+.tm-add-select:focus {
+  border-color: var(--accent);
+}
+
+.tm-add-form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.tm-btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.tm-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.tm-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.tm-btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tm-btn-secondary:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-hover);
+}
+
+/* ─── Botón agregar ───────────────────────────────────────── */
+.tm-add-trigger {
+  width: 100%;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s;
+  margin-bottom: 1.5rem;
+}
+
+.tm-add-trigger:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+/* ─── Sección label ───────────────────────────────────────── */
+.tm-section-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.75rem 0 0.4rem;
+  font-family: var(--font-display);
+}
+
+/* ─── Lista ───────────────────────────────────────────────── */
+.tm-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ─── Tarjeta de tarea ────────────────────────────────────── */
+.tm-task-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s, background 0.15s;
+  animation: tm-fade-in 0.2s ease;
+}
+
+@keyframes tm-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tm-task-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-active);
+}
+
+.tm-task-card.priority-high {
+  border-left: 3px solid var(--accent);
+}
+
+.tm-task-card.priority-medium {
+  border-left: 3px solid var(--blue);
+}
+
+.tm-task-card.priority-low {
+  border-left: 3px solid var(--text-muted);
+}
+
+.tm-task-card.completed {
+  opacity: 0.5;
+}
+
+/* ─── Checkbox ────────────────────────────────────────────── */
+.tm-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-muted);
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-size: 10px;
+  color: transparent;
+}
+
+.tm-checkbox:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tm-checkbox.checked {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green-text);
+}
+
+/* ─── Contenido tarea ─────────────────────────────────────── */
+.tm-task-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tm-task-title {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tm-task-title.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.tm-task-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tm-task-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.tm-task-date.overdue {
+  color: var(--red-text);
+}
+
+/* ─── Etiquetas ───────────────────────────────────────────── */
+.tm-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.tm-tag.tag-work {
+  background: var(--blue-dim);
+  color: var(--blue-text);
+}
+
+.tm-tag.tag-personal {
+  background: var(--green-dim);
+  color: var(--green-text);
+}
+
+.tm-tag.tag-urgent {
+  background: var(--red-dim);
+  color: var(--red-text);
+}
+
+.tm-tag.tag-idea {
+  background: rgba(139, 92, 246, 0.15);
+  color: #A78BFA;
+}
+
+/* ─── Badge prioridad ─────────────────────────────────────── */
+.tm-priority-badge {
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.tm-priority-badge.badge-high {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+}
+
+.tm-priority-badge.badge-medium {
+  background: var(--blue-dim);
+  color: var(--blue-text);
+}
+
+.tm-priority-badge.badge-low {
+  background: rgba(71, 85, 105, 0.3);
+  color: var(--text-muted);
+}
+
+/* ─── Botón editar ────────────────────────────────────────── */
+.tm-edit-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.tm-task-card:hover .tm-edit-btn {
+  opacity: 1;
+}
+
+.tm-edit-btn:hover {
+  color: var(--accent-text);
+}
+
+/* ─── Botón eliminar ──────────────────────────────────────── */
+.tm-delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.tm-task-card:hover .tm-delete-btn {
+  opacity: 1;
+}
+
+.tm-delete-btn:hover {
+  color: var(--red-text);
+}
+
+/* ─── Formulario edición inline ───────────────────────────── */
+.tm-edit-form {
+  background: var(--bg-surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: tm-slide-down 0.15s ease;
+}
+
+.tm-edit-form .tm-add-form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ─── Estado vacío ────────────────────────────────────────── */
+.tm-empty-state {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-muted);
+}
+
+.tm-empty-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.tm-empty-text {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .tm-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .tm-header-stats {
+    align-self: flex-start;
+  }
+
+  .tm-add-form-row {
+    flex-wrap: wrap;
+  }
+}
