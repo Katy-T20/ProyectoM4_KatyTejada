@@ -532,10 +532,8 @@
   letter-spacing: 0.3px;
 }
 
-.tm-tag.tag-work     { background: var(--blue-dim);             color: var(--blue-text); }
-.tm-tag.tag-personal { background: var(--green-dim);            color: var(--green-text); }
-.tm-tag.tag-urgent   { background: var(--red-dim);              color: var(--red-text); }
-.tm-tag.tag-idea     { background: rgba(139, 92, 246, 0.15);   color: #A78BFA; }
+.tm-tag.tag-work     { background: var(--red-dim);   color: var(--red-text); }
+.tm-tag.tag-personal { background: var(--green-dim); color: var(--green-text); }
 
 /* Badge prioridad */
 .tm-priority-badge {

@@ -70,9 +70,9 @@ export function TaskCard({ task, onToggle, onDelete, onEdit }: TaskCardProps) {
             value={editPriority}
             onChange={e => setEditPriority(e.target.value as Priority)}
           >
-            <option value="high">🔴 Alta</option>
-            <option value="medium">🔵 Media</option>
-            <option value="low">⚪ Baja</option>
+            <option value="high">Alta</option>
+            <option value="medium">Media</option>
+            <option value="low">Baja</option>
           </select>
           <select
             className="tm-add-select"
@@ -81,8 +81,6 @@ export function TaskCard({ task, onToggle, onDelete, onEdit }: TaskCardProps) {
           >
             <option value="work">Trabajo</option>
             <option value="personal">Personal</option>
-            <option value="urgent">Urgente</option>
-            <option value="idea">Idea</option>
           </select>
           <input
             className="tm-add-select"

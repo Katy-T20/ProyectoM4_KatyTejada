@@ -1,6 +1,6 @@
 //Tipos de tareas
 export type Priority = 'high' | 'medium' | 'low'
-export type Tag = 'work' | 'personal' | 'urgent' | 'idea'
+export type Tag = 'work' | 'personal'
 export type Filter = 'all' | 'pending' | 'completed'
 
 export interface Task {

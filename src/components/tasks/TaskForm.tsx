@@ -41,9 +41,9 @@ export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
           value={priority}
           onChange={e => setPriority(e.target.value as Priority)}
         >
-          <option value="high">🔴 Alta</option>
-          <option value="medium">🔵 Media</option>
-          <option value="low">⚪ Baja</option>
+          <option value="high">Alta</option>
+          <option value="medium">Media</option>
+          <option value="low">Baja</option>
         </select>
         <select
           className="tm-add-select"
@@ -52,8 +52,6 @@ export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
         >
           <option value="work">Trabajo</option>
           <option value="personal">Personal</option>
-          <option value="urgent">Urgente</option>
-          <option value="idea">Idea</option>
         </select>
         <input
           className="tm-add-select"

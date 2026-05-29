@@ -32,16 +32,12 @@ export const PRIORITY_BADGE_MAP: Record<Priority, string> = {
 export const TAG_CLASS_MAP: Record<Tag, string> = {
   work: 'tag-work',
   personal: 'tag-personal',
-  urgent: 'tag-urgent',
-  idea: 'tag-idea',
 }
 
 //Etiquetas legibles
 export const TAG_LABELS: Record<Tag, string> = {
   work: 'Trabajo',
   personal: 'Personal',
-  urgent: 'Urgente',
-  idea: 'Idea',
 }
 
 export const PRIORITY_LABELS: Record<Priority, string> = {

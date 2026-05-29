@@ -1,12 +1,11 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useCallback, type ReactNode } from 'react'
 import { authService } from '../services/authService'
 import type { User } from '../types'
 import type { AuthContextValue } from './authTypes'
 
-//Contexto
-const AuthContext = createContext<AuthContextValue | null>(null)
+export const AuthContext = createContext<AuthContextValue | null>(null)
 
-//Proveedor
 interface AuthProviderProps {
   children: ReactNode
 }
@@ -48,11 +47,4 @@ export function AuthProvider({ children }: AuthProviderProps) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-//Hook de acceso
-export function useAuth() {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth debe usarse dentro de AuthProvider')
-  return ctx
 }
