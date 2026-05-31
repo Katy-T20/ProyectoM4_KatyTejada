@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
@@ -31,7 +32,7 @@ export default function LoginPage() {
 
           <div className="tm-header-left">
             <span className="tm-header-eyebrow">MateCode</span>
-            <h1 className="tm-header-title">Iniciar sesión</h1>
+            <h1 className="tm-auth-title">Iniciar sesión</h1>
           </div>
 
           <form className="tm-auth-form" onSubmit={handleSubmit}>

@@ -8,16 +8,18 @@ import type { Filter } from '../types'
 
 export default function TaskPage() {
   const {
-    filtered,
-    filter,
-    setFilter,
-    search,
-    setSearch,
-    addTask,
-    toggleTask,
-    deleteTask,
-    editTask,
-  } = useTasks()
+  filtered,
+  filter,
+  setFilter,
+  search,
+  setSearch,
+  pendingCount,
+  completedCount,
+  addTask,
+  toggleTask,
+  deleteTask,
+  editTask,
+} = useTasks()
 
   const [showForm, setShowForm] = useState(false)
 
@@ -25,7 +27,7 @@ export default function TaskPage() {
     <div className="tm-app">
       <div className="tm-container">
 
-        <Navbar />
+        <Navbar pendingCount={pendingCount} completedCount={completedCount} />
 
         {/* Toolbar */}
         <div className="tm-toolbar">

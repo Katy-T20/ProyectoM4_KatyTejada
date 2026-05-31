@@ -6,6 +6,7 @@ export type Filter = 'all' | 'pending' | 'completed'
 export interface Task {
   id: string
   title: string
+  description?: string
   priority: Priority
   tag: Tag
   dueDate: string

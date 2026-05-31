@@ -4,6 +4,7 @@ import type { Priority, Tag } from '../../types'
 interface TaskFormProps {
   onAdd: (data: {
     title: string
+    description?: string
     priority: Priority
     tag: Tag
     dueDate: string
@@ -13,13 +14,20 @@ interface TaskFormProps {
 
 export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
   const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
   const [priority, setPriority] = useState<Priority>('medium')
   const [tag, setTag] = useState<Tag>('work')
   const [date, setDate] = useState('')
 
   const handleAdd = () => {
     if (!title.trim()) return
-    onAdd({ title: title.trim(), priority, tag, dueDate: date })
+    onAdd({
+      title: title.trim(),
+      description: description.trim() || undefined,
+      priority,
+      tag,
+      dueDate: date,
+    })
   }
 
   return (
@@ -33,6 +41,15 @@ export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
           onChange={e => setTitle(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && handleAdd()}
           autoFocus
+        />
+      </div>
+      <div className="tm-add-form-row">
+        <textarea
+          className="tm-add-input tm-add-textarea"
+          placeholder="Descripción (opcional)..."
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          rows={2}
         />
       </div>
       <div className="tm-add-form-row">

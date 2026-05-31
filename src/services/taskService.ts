@@ -23,6 +23,7 @@ export const taskService = {
 
   create(userId: string, data: {
     title: string
+    description?: string
     priority: Priority
     tag: Tag
     dueDate: string
