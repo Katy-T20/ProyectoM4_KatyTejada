@@ -1,57 +1,97 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { taskService } from '../services/taskService'
 import { useAuth } from './useAuth'
 import type { Task, Filter, Priority, Tag } from '../types'
 
-//Hook principal
 export function useTasks() {
   const { user } = useAuth()
-
-  const [tasks, setTasks] = useState<Task[]>(() =>
-    user ? taskService.getByUser(user.id) : []
-  )
+  const [tasks, setTasks] = useState<Task[]>([])
   const [filter, setFilter] = useState<Filter>('all')
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  //Recargar desde storage 
-  const refresh = useCallback(() => {
-    if (user) setTasks(taskService.getByUser(user.id))
+  // Cargar tareas desde Firestore
+  const refresh = useCallback(async () => {
+    if (!user) return
+    setIsLoading(true)
+    setError(null)
+    try {
+      const data = await taskService.getByUser(user.id)
+      setTasks(data)
+    } catch (err) {
+      setError('Error al cargar las tareas')
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
   }, [user])
 
-  //Acciones
-  const addTask = useCallback((data: {
+  useEffect(() => {
+    refresh()
+  }, [refresh])
+
+  // Acciones
+  const addTask = useCallback(async (data: {
     title: string
+    description?: string
     priority: Priority
     tag: Tag
     dueDate: string
   }) => {
     if (!user) return
-    taskService.create(user.id, data)
-    refresh()
+    setError(null)
+    try {
+      await taskService.create(user.id, data)
+      await refresh()
+    } catch (err) {
+      setError('Error al crear la tarea')
+      console.error(err)
+    }
   }, [user, refresh])
 
-  const toggleTask = useCallback((id: string) => {
+  const toggleTask = useCallback(async (id: string) => {
     if (!user) return
-    taskService.toggle(id, user.id)
-    refresh()
-  }, [user, refresh])
+    setError(null)
+    try {
+      const task = tasks.find(t => t.id === id)
+      if (!task) return
+      await taskService.toggle(id, user.id, task.completed)
+      await refresh()
+    } catch (err) {
+      setError('Error al actualizar la tarea')
+      console.error(err)
+    }
+  }, [user, tasks, refresh])
 
-  const deleteTask = useCallback((id: string) => {
+  const deleteTask = useCallback(async (id: string) => {
     if (!user) return
-    taskService.delete(id, user.id)
-    refresh()
+    setError(null)
+    try {
+      await taskService.delete(id, user.id)
+      await refresh()
+    } catch (err) {
+      setError('Error al eliminar la tarea')
+      console.error(err)
+    }
   }, [user, refresh])
 
-  const editTask = useCallback((
+  const editTask = useCallback(async (
     id: string,
-    changes: Partial<Pick<Task, 'title' | 'priority' | 'tag' | 'dueDate'>>
+    changes: Partial<Pick<Task, 'title' | 'description' | 'priority' | 'tag' | 'dueDate'>>
   ) => {
     if (!user) return
-    taskService.update(id, user.id, changes)
-    refresh()
+    setError(null)
+    try {
+      await taskService.update(id, user.id, changes)
+      await refresh()
+    } catch (err) {
+      setError('Error al editar la tarea')
+      console.error(err)
+    }
   }, [user, refresh])
 
-  //Filtrado
+  // Filtrado
   const filtered = useMemo(() => {
     return tasks
       .filter(t => {
@@ -66,7 +106,6 @@ export function useTasks() {
       })
   }, [tasks, filter, search])
 
-  //Stats
   const pendingCount = tasks.filter(t => !t.completed).length
   const completedCount = tasks.filter(t => t.completed).length
 
@@ -76,6 +115,8 @@ export function useTasks() {
     setFilter,
     search,
     setSearch,
+    isLoading,
+    error,
     pendingCount,
     completedCount,
     addTask,

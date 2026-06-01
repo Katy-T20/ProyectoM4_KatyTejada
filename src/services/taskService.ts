@@ -1,65 +1,66 @@
-import { genId } from '../utils/helpers'
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+  query,
+  where,
+  serverTimestamp,
+} from 'firebase/firestore'
+import { db } from './firebase'
 import type { Task, Priority, Tag } from '../types'
 
-const TASKS_KEY = 'matecode_tasks'
+const TASKS_COLLECTION = 'tasks'
 
-//Helpers internos 
-const getAllTasks = (): Task[] => {
-  try {
-    return JSON.parse(localStorage.getItem(TASKS_KEY) || '[]')
-  } catch {
-    return []
-  }
-}
-
-const saveTasks = (tasks: Task[]) =>
-  localStorage.setItem(TASKS_KEY, JSON.stringify(tasks))
-
-//API pública
+// API pública 
 export const taskService = {
-  getByUser(userId: string): Task[] {
-    return getAllTasks().filter(t => t.userId === userId)
+  async getByUser(userId: string): Promise<Task[]> {
+    const q = query(
+      collection(db, TASKS_COLLECTION),
+      where('userId', '==', userId)
+    )
+    const snapshot = await getDocs(q)
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Task[]
   },
 
-  create(userId: string, data: {
+  async create(userId: string, data: {
     title: string
     description?: string
     priority: Priority
     tag: Tag
     dueDate: string
-  }): Task {
-    const task: Task = {
-      id: genId(),
+  }): Promise<Task> {
+    const newTask = {
       userId,
       completed: false,
       createdAt: Date.now(),
       ...data,
     }
-    saveTasks([task, ...getAllTasks()])
-    return task
+    const docRef = await addDoc(collection(db, TASKS_COLLECTION), newTask)
+    return { id: docRef.id, ...newTask }
   },
 
-  update(id: string, userId: string, changes: Partial<Pick<Task,
-    'title' | 'priority' | 'tag' | 'dueDate' | 'completed'
-  >>): Task {
-    const all = getAllTasks()
-    const idx = all.findIndex(t => t.id === id && t.userId === userId)
-    if (idx === -1) throw new Error('Tarea no encontrada')
-    all[idx] = { ...all[idx], ...changes }
-    saveTasks(all)
-    return all[idx]
+  async update(
+    id: string,
+    _userId: string,
+    changes: Partial<Pick<Task, 'title' | 'description' | 'priority' | 'tag' | 'dueDate' | 'completed'>>
+  ): Promise<void> {
+    const ref = doc(db, TASKS_COLLECTION, id)
+    await updateDoc(ref, { ...changes, updatedAt: serverTimestamp() })
   },
 
-  delete(id: string, userId: string): void {
-    saveTasks(getAllTasks().filter(t => !(t.id === id && t.userId === userId)))
+  async delete(id: string, _userId: string): Promise<void> {
+    const ref = doc(db, TASKS_COLLECTION, id)
+    await deleteDoc(ref)
   },
 
-  toggle(id: string, userId: string): Task {
-    const all = getAllTasks()
-    const idx = all.findIndex(t => t.id === id && t.userId === userId)
-    if (idx === -1) throw new Error('Tarea no encontrada')
-    all[idx] = { ...all[idx], completed: !all[idx].completed }
-    saveTasks(all)
-    return all[idx]
+  async toggle(id: string, _userId: string, completed: boolean): Promise<void> {
+    const ref = doc(db, TASKS_COLLECTION, id)
+    await updateDoc(ref, { completed: !completed, updatedAt: serverTimestamp() })
   },
 }

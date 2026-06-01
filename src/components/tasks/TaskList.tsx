@@ -4,19 +4,42 @@ import { TaskCard } from './TaskCard'
 interface TaskListProps {
   tasks: Task[]
   search: string
+  isLoading: boolean
+  error: string | null
   onToggle: (id: string) => void
   onDelete: (id: string) => void
   onEdit: (id: string, changes: Partial<Pick<Task,
-    'title' | 'priority' | 'tag' | 'dueDate'>>) => void
+    'title' | 'description' | 'priority' | 'tag' | 'dueDate'>>) => void
 }
 
 export function TaskList({
   tasks,
   search,
+  isLoading,
+  error,
   onToggle,
   onDelete,
   onEdit,
 }: TaskListProps) {
+
+  if (isLoading) {
+    return (
+      <div className="tm-empty-state">
+        <div className="tm-empty-icon">⟳</div>
+        <p className="tm-empty-text">Cargando tareas...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="tm-empty-state">
+        <div className="tm-empty-icon">⚠</div>
+        <p className="tm-empty-text">{error}</p>
+      </div>
+    )
+  }
+
   const pending = tasks.filter(t => !t.completed)
   const completed = tasks.filter(t => t.completed)
 

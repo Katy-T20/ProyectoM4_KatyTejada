@@ -1,70 +1,46 @@
-import { genId } from '../utils/helpers'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  onAuthStateChanged,
+  type User as FirebaseUser,
+} from 'firebase/auth'
+import { auth } from './firebase'
 import type { User } from '../types'
 
-const USERS_KEY = 'matecode_users'
-const SESSION_KEY = 'matecode_session'
+// Convertir FirebaseUser a nuestro tipo User
+const toUser = (fbUser: FirebaseUser): User => ({
+  id: fbUser.uid,
+  name: fbUser.displayName ?? fbUser.email?.split('@')[0] ?? 'Usuario',
+  email: fbUser.email ?? '',
+})
 
-//Tipos internos
-interface StoredUser extends User {
-  password: string
-}
-
-//Helpers internos
-const getUsers = (): StoredUser[] => {
-  try {
-    return JSON.parse(localStorage.getItem(USERS_KEY) || '[]')
-  } catch {
-    return []
-  }
-}
-
-const saveUsers = (users: StoredUser[]) =>
-  localStorage.setItem(USERS_KEY, JSON.stringify(users))
-
-//API pública
+// API pública
 export const authService = {
-  register(name: string, email: string, password: string): User {
-    const users = getUsers()
-
-    if (users.find(u => u.email === email)) {
-      throw new Error('Este email ya está registrado')
-    }
-
-    const newUser: StoredUser = {
-      id: genId(),
-      name,
-      email,
-      password,
-    }
-
-    saveUsers([...users, newUser])
-
-    const { password: _, ...user } = newUser
-    localStorage.setItem(SESSION_KEY, JSON.stringify(user))
-    return user
+  async register(name: string, email: string, password: string): Promise<User> {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password)
+    await updateProfile(user, { displayName: name })
+    return toUser({ ...user, displayName: name })
   },
 
-  login(email: string, password: string): User {
-    const users = getUsers()
-    const found = users.find(u => u.email === email && u.password === password)
-
-    if (!found) throw new Error('Email o contraseña incorrectos')
-
-    const { password: _, ...user } = found
-    localStorage.setItem(SESSION_KEY, JSON.stringify(user))
-    return user
+  async login(email: string, password: string): Promise<User> {
+    const { user } = await signInWithEmailAndPassword(auth, email, password)
+    return toUser(user)
   },
 
-  logout() {
-    localStorage.removeItem(SESSION_KEY)
+  async logout(): Promise<void> {
+    await signOut(auth)
   },
 
   getCurrentUser(): User | null {
-    try {
-      const raw = localStorage.getItem(SESSION_KEY)
-      return raw ? JSON.parse(raw) : null
-    } catch {
-      return null
-    }
+    const fbUser = auth.currentUser
+    return fbUser ? toUser(fbUser) : null
+  },
+
+  onAuthChange(callback: (user: User | null) => void): () => void {
+    return onAuthStateChanged(auth, fbUser => {
+      callback(fbUser ? toUser(fbUser) : null)
+    })
   },
 }

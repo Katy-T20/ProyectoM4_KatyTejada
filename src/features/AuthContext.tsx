@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useCallback, type ReactNode } from 'react'
+import { createContext, useEffect, useState, useCallback, type ReactNode } from 'react'
 import { authService } from '../services/authService'
 import type { User } from '../types'
 import type { AuthContextValue } from './authTypes'
@@ -11,12 +11,20 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(() =>
-    authService.getCurrentUser()
-  )
+  const [user, setUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Escuchar cambios de sesión de Firebase
+  useEffect(() => {
+    const unsubscribe = authService.onAuthChange(fbUser => {
+      setUser(fbUser)
+      setIsLoading(false)
+    })
+    return unsubscribe
+  }, [])
 
   const login = useCallback(async (email: string, password: string) => {
-    const u = authService.login(email, password)
+    const u = await authService.login(email, password)
     setUser(u)
   }, [])
 
@@ -25,14 +33,33 @@ export function AuthProvider({ children }: AuthProviderProps) {
     email: string,
     password: string
   ) => {
-    const u = authService.register(name, email, password)
+    const u = await authService.register(name, email, password)
     setUser(u)
   }, [])
 
-  const logout = useCallback(() => {
-    authService.logout()
+  const logout = useCallback(async () => {
+    await authService.logout()
     setUser(null)
   }, [])
+
+  // Mientras Firebase verifica la sesión no renderizar
+  if (isLoading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        background: '#0a0a14',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'DM Mono, monospace',
+        fontSize: '12px',
+        letterSpacing: '2px',
+        color: '#C026D3',
+      }}>
+        CARGANDO...
+      </div>
+    )
+  }
 
   return (
     <AuthContext.Provider

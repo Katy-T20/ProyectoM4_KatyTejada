@@ -13,6 +13,8 @@ export default function TaskPage() {
   setFilter,
   search,
   setSearch,
+  isLoading,
+  error,
   pendingCount,
   completedCount,
   addTask,
@@ -72,13 +74,14 @@ export default function TaskPage() {
 
         {/* Lista */}
         <TaskList
-          tasks={filtered}
-          search={search}
-          onToggle={toggleTask}
-          onDelete={deleteTask}
-          onEdit={editTask}
+            tasks={filtered}
+            search={search}
+            isLoading={isLoading}
+            error={error}
+            onToggle={toggleTask}
+            onDelete={deleteTask}
+            onEdit={editTask}
         />
-
       </div>
     </div>
   )
