@@ -7,6 +7,7 @@ import {
   getDocs,
   query,
   where,
+  orderBy,
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from './firebase'
@@ -19,7 +20,8 @@ export const taskService = {
   async getByUser(userId: string): Promise<Task[]> {
     const q = query(
       collection(db, TASKS_COLLECTION),
-      where('userId', '==', userId)
+      where('userId', '==', userId),
+      orderBy('createdAt', 'desc')
     )
     const snapshot = await getDocs(q)
     return snapshot.docs.map(doc => ({

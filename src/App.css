@@ -768,3 +768,14 @@
   font-size: 13px;
   line-height: 1.6;
 }
+
+/* Errores de validación por campo */
+.tm-input-error {
+  border-color: var(--red) !important;
+}
+
+.tm-field-error {
+  font-size: 11px;
+  color: var(--red-text);
+  margin-top: 2px;
+}
