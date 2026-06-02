@@ -28,8 +28,11 @@ export default function TaskPage() {
   return (
     <div className="tm-app">
       <div className="tm-container">
-
-        <Navbar pendingCount={pendingCount} completedCount={completedCount} />
+        <Navbar
+            pendingCount={pendingCount}
+            completedCount={completedCount}
+            tasks={filtered}
+        />
 
         {/* Toolbar */}
         <div className="tm-toolbar">

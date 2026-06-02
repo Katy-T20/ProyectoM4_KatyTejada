@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.1058.0",
+    "@vercel/node": "^5.8.9",
     "firebase": "^12.14.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",

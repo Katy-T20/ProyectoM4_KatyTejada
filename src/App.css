@@ -779,3 +779,46 @@
   color: var(--red-text);
   margin-top: 2px;
 }
+
+/* ─── Navbar actions ──────────────────────────────────────── */
+.tm-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Botón email */
+.tm-email-btn {
+  background: rgba(96, 165, 250, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 8px;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: #60A5FA;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tm-email-btn:hover:not(:disabled) {
+  background: rgba(96, 165, 250, 0.25);
+  border-color: rgba(96, 165, 250, 0.6);
+}
+
+.tm-email-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tm-email-btn.success {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #4ADE80;
+}
+
+.tm-email-btn.error {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #F87171;
+}
