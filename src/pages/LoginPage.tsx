@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { validateLogin } from '../utils/validators'
 import { getAuthErrorMessage } from '../utils/authErrors'
-import { authService } from '../services/authService'
 
 export default function LoginPage() {
   const { login, loginWithGoogle } = useAuth()
@@ -29,20 +28,18 @@ export default function LoginPage() {
     setErrors({})
 
     setLoading(true)
-    try {
-        //Verificar proveedor antes de intentar login
-        const methods = await authService.getSignInMethods(email)
-        if (methods.includes('google.com') && !methods.includes('password')) {
-            setFirebaseError('Esta cuenta usa Google. Usá el botón "Continuar con Google".')
-            setLoading(false)
-            return
-        }
-
+    try { //Verificar proveedor antes de intentar login
         await login(email, password)
         navigate('/tasks')
     } catch (err: unknown) {
-        const code = (err as { code?: string }).code ?? ''
+    const code = (err as { code?: string }).code ?? ''
+    if (code === 'auth/invalid-credential') {
+        setFirebaseError(
+        'Email o contraseña incorrectos. Si te registraste con Google, usá el botón "Continuar con Google".'
+        )
+    } else {
         setFirebaseError(getAuthErrorMessage(code))
+    }
     } finally {
         setLoading(false)
     }
