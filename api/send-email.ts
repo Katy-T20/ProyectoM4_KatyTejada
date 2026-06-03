@@ -28,7 +28,7 @@ const taskRow = (t: Task) => `
   <tr>
     <td style="padding:8px 12px;border-bottom:1px solid #1C2333;color:#E2E8F0">${t.title}</td>
     <td style="padding:8px 12px;border-bottom:1px solid #1C2333;color:#AFA9EC">${priorityLabel(t.priority)}</td>
-    <td style="padding:8px 12px;border-bottom:1px solid #1C2333;color:#94A3B8">${t.dueDate ?? '—'}</td>
+    <td style="padding:8px 12px;border-bottom:1px solid #1C2333;color:#94A3B8">${t.dueDate ? new Date(t.dueDate + 'T00:00:00').toLocaleDateString('es-MX', { month: '2-digit', day: '2-digit', year: 'numeric' }) : '—'}</td>
     <td style="padding:8px 12px;border-bottom:1px solid #1C2333;color:#64748B">${t.description ?? '—'}</td>
   </tr>
 `

@@ -75,6 +75,7 @@ export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
           type="date"
           value={date}
           onChange={e => setDate(e.target.value)}
+          min={new Date().toISOString().split('T')[0]}
           style={{ flex: 1 }}
         />
       </div>

@@ -35,7 +35,7 @@ const mockTasks: Task[] = [
   },
 ]
 
-// ─── Funciones de filtrado (igual a useTasks) ─────────────────
+// Funciones de filtrado (igual a useTasks)
 const filterTasks = (tasks: Task[], filter: string, search: string) => {
   return tasks
     .filter(t => {
@@ -48,7 +48,7 @@ const filterTasks = (tasks: Task[], filter: string, search: string) => {
     )
 }
 
-// ─── Tests ────────────────────────────────────────────────────
+// Tests
 describe('FilterTaskList', () => {
   it('filtro "all" devuelve todas las tareas', () => {
     const result = filterTasks(mockTasks, 'all', '')

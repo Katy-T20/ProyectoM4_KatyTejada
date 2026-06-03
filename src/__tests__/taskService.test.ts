@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-// ─── Mock de Firestore ────────────────────────────────────────
+// Mock de Firestore
 vi.mock('../services/firebase', () => ({
   db: {},
 }))
