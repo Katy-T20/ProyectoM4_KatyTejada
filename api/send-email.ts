@@ -61,8 +61,8 @@ const buildEmailTemplate = (userName: string, tasks: Task[]): string => {
       <div style="max-width:600px;margin:0 auto;padding:40px 20px">
 
         <div style="background:linear-gradient(135deg,#C026D3,#7F77DD);border-radius:10px;padding:8px 16px;display:inline-block;margin-bottom:24px">
-          <span style="font-size:20px;font-weight:900;color:white;letter-spacing:-1px">NT</span>
-          <span style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.75);display:block;text-transform:uppercase">NovaTask</span>
+          <span style="font-size:20px;font-weight:900;color:white;letter-spacing:-1px">MC</span>
+          <span style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.75);display:block;text-transform:uppercase">MateCode</span>
         </div>
 
         <h1 style="color:#E879F9;font-size:28px;font-weight:900;margin:0 0 8px;letter-spacing:-1px">

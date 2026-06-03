@@ -28,6 +28,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser(u)
   }, [])
 
+  const loginWithGoogle = useCallback(async () => {
+  const u = await authService.loginWithGoogle()
+  setUser(u)
+}, [])
+
   const register = useCallback(async (
     name: string,
     email: string,
@@ -69,6 +74,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         login,
         register,
         logout,
+        loginWithGoogle,
       }}
     >
       {children}

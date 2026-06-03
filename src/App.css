@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=Space+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
-/* ─── Variables ───────────────────────────────────────────── */
+/* Variables */
 :root {
   --bg-base: #111827;
   --bg-surface: #1C2333;
@@ -48,7 +48,7 @@
   --font-mono: 'DM Mono', monospace;
 }
 
-/* ─── Reset ───────────────────────────────────────────────── */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -57,7 +57,7 @@
   padding: 0;
 }
 
-/* ─── Layout principal ────────────────────────────────────── */
+/* Layout principal */
 .tm-app {
   min-height: 100vh;
   background-color: #0a0a14;
@@ -83,7 +83,7 @@
   }
 }
 
-/* ─── Navbar superior ─────────────────────────────────────── */
+/* Navbar superior */
 .tm-navbar {
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@
   padding: 1.25rem 0 1rem;
 }
 
-/* ─── Logo ────────────────────────────────────────────────── */
+/* Logo */
 .tm-logo {
   background: linear-gradient(135deg, #C026D3, #7F77DD);
   border-radius: 10px;
@@ -121,7 +121,7 @@
   line-height: 1.2;
 }
 
-/* ─── Botón logout ────────────────────────────────────────── */
+/* Botón logout */
 .tm-logout-btn {
   background: rgba(192, 38, 211, 0.15);
   border: 1px solid rgba(192, 38, 211, 0.4);
@@ -140,7 +140,7 @@
   border-color: rgba(192, 38, 211, 0.6);
 }
 
-/* ─── Header — título + saludo + stats ────────────────────── */
+/* Header — título + saludo + stats */
 .tm-header {
   display: flex;
   flex-direction: column;
@@ -196,7 +196,7 @@
   font-weight: 600;
 }
 
-/* ─── Stats ───────────────────────────────────────────────── */
+/* Stats */
 .tm-header-stats {
   display: flex;
   align-items: center;
@@ -234,7 +234,7 @@
   background: var(--border);
 }
 
-/* ─── Toolbar ─────────────────────────────────────────────── */
+/* Toolbar */
 .tm-toolbar {
   display: flex;
   flex-direction: column;
@@ -323,7 +323,7 @@
   color: var(--accent-text);
 }
 
-/* ─── Formulario nueva tarea ──────────────────────────────── */
+/* Formulario nueva tarea */
 .tm-add-form {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -400,7 +400,7 @@
   justify-content: flex-end;
 }
 
-/* ─── Botones ─────────────────────────────────────────────── */
+/* Botones */
 .tm-btn-primary {
   background: var(--accent);
   color: white;
@@ -441,7 +441,7 @@
   font-size: 13px;
 }
 
-/* ─── Botón agregar ───────────────────────────────────────── */
+/* Botón agregar */
 .tm-add-trigger {
   width: 100%;
   background: transparent;
@@ -471,7 +471,7 @@
   color: var(--accent-text);
 }
 
-/* ─── Sección label ───────────────────────────────────────── */
+/* Sección label */
 .tm-section-label {
   font-size: 10px;
   letter-spacing: 2px;
@@ -481,14 +481,14 @@
   font-family: var(--font-body);
 }
 
-/* ─── Lista ───────────────────────────────────────────────── */
+/* Lista */
 .tm-task-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* ─── Tarjeta de tarea ────────────────────────────────────── */
+/* Tarjeta de tarea */
 .tm-task-card {
   background: rgba(28, 35, 51, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -516,7 +516,7 @@
 .tm-task-card.priority-low    { border-left: 3px solid var(--blue-dark); }
 .tm-task-card.completed       { opacity: 0.5; }
 
-/* ─── Checkbox ────────────────────────────────────────────── */
+/* Checkbox */
 .tm-checkbox {
   width: 20px;
   height: 20px;
@@ -544,7 +544,7 @@
   color: var(--green-text);
 }
 
-/* ─── Cuerpo de la tarea ──────────────────────────────────── */
+/* Cuerpo de la tarea */
 .tm-task-body {
   flex: 1;
   min-width: 0;
@@ -553,7 +553,7 @@
   gap: 6px;
 }
 
-/* ─── Línea 1 — badge + título + acciones ─────────────────── */
+/* Línea 1 — badge + título + acciones */
 .tm-task-top {
   display: flex;
   align-items: center;
@@ -583,7 +583,7 @@
   flex-shrink: 0;
 }
 
-/* ─── Línea 2 — descripción ───────────────────────────────── */
+/* Línea 2 — descripción */
 .tm-task-description {
   font-family: var(--font-body);
   font-size: 12px;
@@ -595,7 +595,7 @@
   color: var(--text-muted);
 }
 
-/* ─── Línea 3 — fecha + tag ───────────────────────────────── */
+/* Línea 3 — fecha + tag */
 .tm-task-bottom {
   display: flex;
   align-items: center;
@@ -610,7 +610,7 @@
 
 .tm-task-date.overdue { color: var(--red-text); }
 
-/* ─── Etiquetas ───────────────────────────────────────────── */
+/* Etiquetas */
 .tm-tag {
   font-size: 10px;
   padding: 2px 8px;
@@ -623,7 +623,7 @@
 .tm-tag.tag-work     { background: var(--red-dim);   color: var(--red-text); }
 .tm-tag.tag-personal { background: var(--green-dim); color: var(--green-text); }
 
-/* ─── Badge prioridad ─────────────────────────────────────── */
+/* Badge prioridad */
 .tm-priority-badge {
   font-size: 11px;
   font-weight: 700;
@@ -638,7 +638,7 @@
 .tm-priority-badge.badge-medium { background: var(--violet-dim);    color: var(--violet-text); }
 .tm-priority-badge.badge-low    { background: var(--blue-dark-dim); color: var(--blue-dark-text); }
 
-/* ─── Botones editar y eliminar ───────────────────────────── */
+/* Botones editar y eliminar */
 .tm-edit-btn,
 .tm-delete-btn {
   background: transparent;
@@ -659,7 +659,7 @@
 .tm-edit-btn:hover   { color: var(--accent-text); }
 .tm-delete-btn:hover { color: var(--red-text); }
 
-/* ─── Formulario edición inline ───────────────────────────── */
+/* Formulario edición inline */
 .tm-edit-form {
   background: var(--bg-surface);
   border: 1px solid var(--accent);
@@ -671,7 +671,7 @@
   animation: tm-slide-down 0.15s ease;
 }
 
-/* ─── Auth card ───────────────────────────────────────────── */
+/* Auth card */
 .tm-auth-card {
   max-width: 420px;
   margin: 3rem auto 0;
@@ -746,7 +746,7 @@
   text-decoration: underline;
 }
 
-/* ─── Estado vacío ────────────────────────────────────────── */
+/* Estado vacío */
 .tm-empty-state {
   text-align: center;
   padding: 2.5rem 0;
@@ -780,7 +780,7 @@
   margin-top: 2px;
 }
 
-/* ─── Navbar actions ──────────────────────────────────────── */
+/* Navbar actions */
 .tm-navbar-actions {
   display: flex;
   align-items: center;
@@ -821,4 +821,50 @@
   background: rgba(239, 68, 68, 0.15);
   border-color: rgba(239, 68, 68, 0.4);
   color: #F87171;
+}
+
+/* ─── Divider auth ────────────────────────────────────────── */
+.tm-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.tm-auth-divider::before,
+.tm-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Botón Google */
+.tm-google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tm-google-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tm-google-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
