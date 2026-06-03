@@ -66,7 +66,7 @@ const buildEmailTemplate = (userName: string, tasks: Task[]): string => {
         </div>
 
         <h1 style="color:#E879F9;font-size:28px;font-weight:900;margin:0 0 8px;letter-spacing:-1px">
-          Resumen de Tareas
+          NovaTask - Resumen de Tareas
         </h1>
         <p style="color:#AFA9EC;font-size:14px;margin:0 0 32px">
           Hola <strong style="color:#E879F9">${userName}</strong> 🌟 Aquí está tu resumen actualizado.

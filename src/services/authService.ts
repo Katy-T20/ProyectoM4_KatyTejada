@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   GoogleAuthProvider,
+  fetchSignInMethodsForEmail,
   type User as FirebaseUser,
 } from 'firebase/auth'
 import { auth } from './firebase'
@@ -26,7 +27,11 @@ export const authService = {
     return toUser({ ...user, displayName: name })
   },
 
-    async loginWithGoogle(): Promise<User> {
+  async getSignInMethods(email: string): Promise<string[]> {
+    return fetchSignInMethodsForEmail(auth, email)
+  },
+
+  async loginWithGoogle(): Promise<User> {
     const provider = new GoogleAuthProvider()
     const { user } = await signInWithPopup(auth, provider)
     return toUser(user)

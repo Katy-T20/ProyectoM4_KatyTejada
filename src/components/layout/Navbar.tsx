@@ -70,7 +70,7 @@ export function Navbar({ pendingCount, completedCount, tasks }: NavbarProps) {
       {/* Header — título + saludo + stats */}
       <header className="tm-header">
         <div className="tm-header-left">
-          <h1 className="tm-header-title">Mis Tasks</h1>
+          <h1 className="tm-header-title">NovaTask</h1>
           <div className="tm-greeting">
             Hola <span className="tm-greeting-name">{user?.name}</span> 🌟 Hoy es un gran día para avanzar!
           </div>

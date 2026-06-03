@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { validateLogin } from '../utils/validators'
 import { getAuthErrorMessage } from '../utils/authErrors'
+import { authService } from '../services/authService'
 
 export default function LoginPage() {
   const { login, loginWithGoogle } = useAuth()
@@ -20,24 +21,32 @@ export default function LoginPage() {
 
     const validationErrors = validateLogin(email, password)
     if (validationErrors.length > 0) {
-      const errorMap: Record<string, string> = {}
-      validationErrors.forEach(err => { errorMap[err.field] = err.message })
-      setErrors(errorMap)
-      return
+        const errorMap: Record<string, string> = {}
+        validationErrors.forEach(err => { errorMap[err.field] = err.message })
+        setErrors(errorMap)
+        return
     }
     setErrors({})
 
     setLoading(true)
     try {
-      await login(email, password)
-      navigate('/tasks')
+        //Verificar proveedor antes de intentar login
+        const methods = await authService.getSignInMethods(email)
+        if (methods.includes('google.com') && !methods.includes('password')) {
+            setFirebaseError('Esta cuenta usa Google. Usá el botón "Continuar con Google".')
+            setLoading(false)
+            return
+        }
+
+        await login(email, password)
+        navigate('/tasks')
     } catch (err: unknown) {
-      const code = (err as { code?: string }).code ?? ''
-      setFirebaseError(getAuthErrorMessage(code))
+        const code = (err as { code?: string }).code ?? ''
+        setFirebaseError(getAuthErrorMessage(code))
     } finally {
-      setLoading(false)
+        setLoading(false)
     }
-  }
+}
 
   async function handleGoogleLogin() {
     setGoogleError('')
