@@ -62,7 +62,7 @@ export function Navbar({ pendingCount, completedCount, tasks }: NavbarProps) {
           </button>
 
           <button className="tm-logout-btn" onClick={logout}>
-            ⎋ Cerrar sesión
+            🔚 Cerrar Sesión
           </button>
         </div>
       </nav>

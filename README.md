@@ -193,6 +193,30 @@ vercel --prod
 
 ---
 
+## 📱 Modo de Uso
+
+1. Iniciar Session
+Si ya te registraste tienes opcion de ingresar a la app con tu correo y password o tambien tienes la opcion de ingresar con google. Si aun no te has registrado tienes la opcion en la parte de abajo para registrarte
+
+![Iniciar Sesión](./src/assets/IniciarSession.jpg)
+
+2. Una vez ya ingresado, tienes la vista de tus perfil donde puedes ver la lista de tus tareas. En esta vista tienes opcion de crear nuevas tareas, filtrar tareas (Todas/Pendientes/Completadas)
+
+![Login Page](./src/assets/LoginPage.jpg)
+
+3. Para crear una nueva tarea haces click en la seccion de "crear tarea" y te lleva al formulario de crear tareas, ingresas la informacion necesaria y has click en "Agregar Tarea" y listo!
+
+![Crear Tarea](./src/assets/CrearTarea.jpg)
+
+4. En la parte superior a la derecha al lado de el boton de cerrar session tienes el boton "Resumen" que te da la opcion de enviar un resumen de tus tareas por email y te da la notificacion cuando ya fue enviado, **esto es para los email verificados en AWS SES.**
+
+![Resumen de Tareas](./src/assets/ResumenTareas.jpg)
+
+5. Para cerrar session te vas a la parte superior a la izquierda y has click en el boton "Cerrar Session"
+
+![Cerrar Sesión](./src/assets/CerrarSession.jpg)
+---
+
 ## 📁 Estructura del Proyecto
 
 ```
