@@ -1,9 +1,6 @@
-SPA Gestion de Tareas
+# 📋 NovaTask — Plataforma Profesional de Gestión de Tareas
 
-<<<<<<< HEAD
-Vercel: https://proyecto-m4-katy-tejada.vercel.app
-=======
-Una **Single Page Application (SPA)** moderna y responsiva para gestión de tareas con autenticación de usuarios y notificaciones por email. **NovaTask** combina seguridad, rendimiento y una experiencia de usuario fluida, integrando servicios en la nube para sincronización en tiempo real y disponibilidad 24/7. Construida con las tecnologías **React 19 + TypeScript + Vite**, autenticada mediante **Firebase** y desplegada en **Vercel**, 
+Una **Single Page Application (SPA)** moderna y responsiva para gestión de tareas con autenticación de usuarios y notificaciones por email.**NovaTask** combina seguridad, rendimiento y una experiencia de usuario fluida, integrando servicios en la nube para sincronización en tiempo real y disponibilidad 24/7.Construida con las tecnologías **React 19 + TypeScript + Vite**, autenticada mediante **Firebase** y desplegada en **Vercel**.  
 
 ---
 ---
@@ -329,4 +326,3 @@ El siguiente registro son puntos claves donde la asistencia de la IA (Claude) fu
 **Katy Tejada** - [@Katy-T20](https://github.com/Katy-T20)
 
 **Version**: 1.0.0 | **Status**: ✅ Production Ready | **Updated**: June 2026
->>>>>>> bbbbc03 (Feat: Agregar Readme de proyecto)
