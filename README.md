@@ -310,18 +310,27 @@ Email incluye:
 
 ### Introducción
 
-Durante el desarrollo de NovaTask, **Claude Haiku 4.5** se integró como asistente de programación principal, demostrando ser una herramienta transformadora en múltiples aspectos del ciclo de desarrollo. 
-El siguiente registro son puntos claves donde la asistencia de la IA (Claude) fue de gran utilidad para resolver desafíos específicos que surgieron durante el desarrollo del gestionador de tareas NovaTask. Esta sección documenta cómo, cuándo y por qué la IA fue efectiva.
+Durante el desarrollo de NovaTask, use **Claude Haiku** como asistente principal, demostrando ser una herramienta muy util en múltiples aspectos del ciclo de desarrollo. El siguiente registro son puntos claves donde la asistencia de la IA fue de gran utilidad para resolver desafíos específicos que surgieron durante el desarrollo del gestionador de tareas NovaTask. Esta sección documenta cómo, cuándo y por qué la IA fue efectiva.
 
 1. Duplicado de estilos de CSS
+Problema: Estilos que interferian con otros borrando la funcionalidad de cada uno
+La IA me ayudo a identificar el porque los estilos integrados no funcionaban y encontro que el problema era estilos dublicados que interferian entre las vistas
 
-2. Separacion de Archivos correspondientes acorde a los funcionalidades
+2. Reconexion con GitHub
+Problema: Al hacer push con git no estaba enviando los commits al repositorio del proyecto
+Claude me ayudo a detectar el problema que era una desconeccion entre mi repositorio y GitHub, me paso los comandos necesarios y resolvio el problema para enviar los commits al repositorio, muy util y productivo con las sugerencias.
 
 3. Desabilitar fecha pasadas para crear nuevas tareas
+Problema: Cuando se crea una nueva tarea, el formulario tenia la opcion de agregar con fechas pasadas y no es lo ideal
+Fue algo muy corto pero muy util q era necesario para las tareas donde la IA me ayudo a desabilitar los dias pasados de la fecha actual.
 
-4. Test
+4. Tests
+Problema: La ejecución de `npm test` fallaba debido a que faltaba la configuración requerida para Vitest en el archivo `package.json`.
+La IA sugirio verificar que todas las dependencias estuvieran instaladas y que la configuración estuviera correctamente establecida antes de volver a ejecutar el comando de pruebas.
 
 5. Reorganizacion de Readme
+Problema: Un Readme demaciado extenso y aburro para leer.
+Para hacerlo mas interesante y corto, Claude sugirio agrego emojis y mantener los bloques de texto cortos y haciendo uso de bullets.
 
 ---
 
