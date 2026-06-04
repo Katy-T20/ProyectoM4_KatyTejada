@@ -83,8 +83,8 @@ export function TaskForm({ onAdd, onCancel }: TaskFormProps) {
         <button className="tm-btn-secondary" onClick={onCancel}>
           Cancelar
         </button>
-        <button className="tm-btn-primary" onClick={handleAdd}>
-          Agregar tarea
+        <button className="tm-btn-primary" onClick={handleAdd} disabled={!title.trim()}>
+            Agregar tarea 
         </button>
       </div>
     </div>

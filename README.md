@@ -1,6 +1,6 @@
 # 📋 NovaTask — Plataforma Profesional de Gestión de Tareas
 
-Una **Single Page Application (SPA)** moderna y responsiva para gestión de tareas con autenticación de usuarios y notificaciones por email.**NovaTask** combina seguridad, rendimiento y una experiencia de usuario fluida, integrando servicios en la nube para sincronización en tiempo real y disponibilidad 24/7.Construida con las tecnologías **React 19 + TypeScript + Vite**, autenticada mediante **Firebase** y desplegada en **Vercel**.  
+Una **Single Page Application (SPA)** moderna y responsiva para gestión de tareas con autenticación de usuarios y notificaciones por email.**NovaTask** combina seguridad, rendimiento y una experiencia de usuario fluida, integrando servicios en la nube para sincronización en tiempo real y disponibilidad 24/7. Construida con las tecnologías **React 19 + TypeScript + Vite**, autenticada mediante **Firebase** y desplegada en **Vercel**.  
 
 ---
 ---
@@ -148,7 +148,7 @@ Crear un archivo `.env` en la raíz del proyecto con las variables necesarias (v
 
 ```bash
 cp .env.example .env
-# Editar .env.local con tus valores reales
+# Crear .env con tus valores reales
 ```
 
 ### Paso 4: Ejecutar en desarrollo
@@ -313,10 +313,14 @@ Email incluye:
 Durante el desarrollo de NovaTask, **Claude Haiku 4.5** se integró como asistente de programación principal, demostrando ser una herramienta transformadora en múltiples aspectos del ciclo de desarrollo. 
 El siguiente registro son puntos claves donde la asistencia de la IA (Claude) fue de gran utilidad para resolver desafíos específicos que surgieron durante el desarrollo del gestionador de tareas NovaTask. Esta sección documenta cómo, cuándo y por qué la IA fue efectiva.
 
-1. Estylos de CSS
-2. Separacion de Archivos correspondientes
-3. Desabilitar fechar pasadas para crear nuevas tareas
+1. Duplicado de estilos de CSS
+
+2. Separacion de Archivos correspondientes acorde a los funcionalidades
+
+3. Desabilitar fecha pasadas para crear nuevas tareas
+
 4. Test
+
 5. Reorganizacion de Readme
 
 ---
